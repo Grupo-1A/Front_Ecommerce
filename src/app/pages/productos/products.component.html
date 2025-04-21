@@ -1,1 +1,133 @@
-<p>products works!</p>
+<div class="products-header">
+  <h1>Nuestros Productos</h1>
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Buscar productos...">
+    <button (click)="applyFilters()">🔍</button>
+  </div>
+  <div class="filters">
+    <select class="filter-select" [(ngModel)]="filters.category">
+      <option value="">Todas las Categorías</option>
+      <option value="ropa">Ropa</option>
+      <option value="calzado">Calzado</option>
+      <option value="accesorios">Accesorios</option>
+    </select>
+    <select class="filter-select" [(ngModel)]="filters.sort">
+      <option value="">Ordenar por</option>
+      <option value="precio-bajo">Precio: Menor a Mayor</option>
+      <option value="precio-alto">Precio: Mayor a Menor</option>
+      <option value="nombre">Nombre</option>
+    </select>
+  </div>
+</div>
+
+<div class="products-container">
+  <aside class="sidebar">
+    <!-- Ubicación -->
+    <div class="filter-section">
+      <h3>Ubicación</h3>
+      <div class="location-filters">
+        <label>
+          <input type="radio" name="location" [(ngModel)]="filters.location" value="bogota"> Bogotá
+        </label>
+        <label><input type="radio" name="location" [(ngModel)]="filters.location" value="medellin"> Medellín</label>
+        <label><input type="radio" name="location" [(ngModel)]="filters.location" value="cali"> Cali</label>
+        <label><input type="radio" name="location" [(ngModel)]="filters.location" value="barranquilla"> Barranquilla</label>
+      </div>
+    </div>
+
+    <!-- Precio -->
+    <div class="filter-section">
+      <h3>Precio</h3>
+      <div class="price-range">
+        <input type="range" [(ngModel)]="filters.maxPrice" min="0" max="1000000" step="10000">
+        <div class="price-inputs">
+          <input type="number" [(ngModel)]="filters.minPrice" placeholder="Min">
+          <input type="number" [(ngModel)]="filters.maxPrice" placeholder="Max">
+        </div>
+      </div>
+      <!-- Rangos predefinidos -->
+      <div class="price-quick-filters">
+        <button (click)="setPrice(0, 50000)">Hasta $50.000</button>
+        <button (click)="setPrice(50000, 100000)">$50.000 a $100.000</button>
+        <button (click)="setPrice(100000, 200000)">$100.000 a $200.000</button>
+        <button (click)="setPrice(200000, 1000000)">Más de $200.000</button>
+      </div>
+    </div>
+
+    <!-- Descuentos -->
+    <div class="filter-section">
+      <h3>Descuentos</h3>
+      <div class="discount-filters">
+        <label><input type="checkbox" [(ngModel)]="filters.discount" value="10"> Desde 10% OFF</label>
+        <label><input type="checkbox" [(ngModel)]="filters.discount" value="20"> Desde 20% OFF</label>
+        <label><input type="checkbox" [(ngModel)]="filters.discount" value="30"> Desde 30% OFF</label>
+        <label><input type="checkbox" [(ngModel)]="filters.discount" value="40"> Desde 40% OFF</label>
+      </div>
+    </div>
+
+    <!-- Tallas -->
+    <div class="filter-section">
+      <h3>Tallas</h3>
+      <div class="size-filters">
+        <label *ngFor="let size of ['XS', 'S', 'M', 'L', 'XL']">
+          <input type="checkbox" [value]="size" (change)="onSizeChange(size, $event)">
+          {{size}}
+        </label>
+      </div>
+    </div>
+
+    <!-- Marca -->
+    <div class="filter-section">
+      <h3>Marca</h3>
+      <div class="brand-filters">
+        <label><input type="checkbox" [(ngModel)]="filters.brand" value="nike"> Nike</label>
+        <label><input type="checkbox" [(ngModel)]="filters.brand" value="adidas"> Adidas</label>
+        <label><input type="checkbox" [(ngModel)]="filters.brand" value="puma"> Puma</label>
+        <label><input type="checkbox" [(ngModel)]="filters.brand" value="reebok"> Reebok</label>
+        <label><input type="checkbox" [(ngModel)]="filters.brand" value="under-armour"> Under Armour</label>
+      </div>
+    </div>
+
+    <!-- Condición -->
+    <div class="filter-section">
+      <h3>Condición</h3>
+      <div class="condition-filters">
+        <label><input type="checkbox" [(ngModel)]="filters.condition" value="nuevo"> Nuevo</label>
+        <label><input type="checkbox" [(ngModel)]="filters.condition" value="usado"> Usado</label>
+        <label><input type="checkbox" [(ngModel)]="filters.condition" value="reacondicionado"> Reacondicionado</label>
+      </div>
+    </div>
+
+    <!-- Envío -->
+    <div class="filter-section">
+      <h3>Envío</h3>
+      <div class="shipping-filters">
+        <label><input type="checkbox" [(ngModel)]="filters.shipping" value="gratis"> Envío Gratis</label>
+        <label><input type="checkbox" [(ngModel)]="filters.shipping" value="full"> Full (1 día)</label>
+        <label><input type="checkbox" [(ngModel)]="filters.shipping" value="pickup"> Retiro en tienda</label>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="apply-filters" (click)="applyFilters()">Aplicar Filtros</button>
+      <button class="reset-filters" (click)="resetFilters()">Restablecer</button>
+    </div>
+  </aside>
+
+  <main class="products-grid">
+    <div class="product-card" *ngFor="let product of filteredProducts">
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.name">
+        <button class="favorite-btn" (click)="toggleFavorite(product)">♡</button>
+      </div>
+      <div class="product-info">
+        <h3>{{product.name}}</h3>
+        <p class="price">{{product.price | currency:'COP':'symbol':'1.0-0'}}</p>
+        <button class="add-to-cart" (click)="addToCart(product)">Agregar al carrito</button>
+      </div>
+    </div>
+  </main>
+</div>

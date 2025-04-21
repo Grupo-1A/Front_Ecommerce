@@ -1,16 +1,22 @@
-import { Routes } from '@angular/router';
-import { PATH } from './core/enum/path.enum';
-import { InicioComponent } from './pages/inicio/inicio.component';
+import { Routes } from "@angular/router";
+import { PATH } from "./core/enum/path.enum";
+import { InicioComponent } from "./pages/inicio/inicio.component";
+import { ProductsComponent } from "./pages/productos/products.component";
 
 export const routes: Routes = [
   {
     path: PATH.HOME,
-    title: 'Inicio',
+    title: "Inicio",
     children: [
       {
         path: PATH.INICIO,
-        title: 'Inicio',
+        title: "Inicio",
         component: InicioComponent,
+      },
+      {
+        path: PATH.PRODUCTOS,
+        title: "Productos",
+        component: ProductsComponent,
       },
     ],
   },

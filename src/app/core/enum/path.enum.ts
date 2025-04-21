@@ -1,4 +1,5 @@
 export enum PATH {
-  HOME = '',
-  INICIO = '',
+  HOME = "",
+  INICIO = "",
+  PRODUCTOS = "productos",
 }
