@@ -10,7 +10,7 @@
   <div class="filters">
     <select class="filter-select" [(ngModel)]="filters.category">
       <option value="">Todas las Categorías</option>
-      <option value="ropa">Ropa</option>
+      <option value="ropa">tecnologia</option>
       <option value="calzado">Calzado</option>
       <option value="accesorios">Accesorios</option>
     </select>
@@ -120,7 +120,7 @@
   <main class="products-grid">
     <div class="product-card" *ngFor="let product of filteredProducts">
       <div class="product-image">
-        <img [src]="product.image" [alt]="product.name">
+        <img [src]="product.image" [alt]="product.name"/>
         <button class="favorite-btn" (click)="toggleFavorite(product)">♡</button>
       </div>
       <div class="product-info">

@@ -27,9 +27,9 @@ export class ProductsComponent implements OnInit {
   allProducts: Product[] = [
     {
       id: 1,
-      name: "Camiseta Básica Negra",
-      price: 49900,
-      image: "assets/images/camiseta-negra.jpg",
+      name: "Diadema Sony Alambrico Blanco",
+      price: 169900,
+      image: "/AudífonosdeDiademaSonyAlámbricosOverEarGamingMDR-G300BlancoNegro.jpg",
       category: "ropa",
       brand: "Nike",
       sizes: ["S", "M", "L"],
@@ -40,9 +40,9 @@ export class ProductsComponent implements OnInit {
     },
     {
       id: 2,
-      name: "Tenis Deportivos",
-      price: 189900,
-      image: "assets/images/tenis.jpg",
+      name: "Base Ventilador PC",
+      price: 45900,
+      image: "/imagenes/baseventiladorpc/BaseEnfriadoraXKIM5Posiciones2PuertosUSB2Ventiladores.jpg",
       category: "calzado",
       brand: "Adidas",
       sizes: ["38", "39", "40", "41", "42"],
@@ -53,9 +53,9 @@ export class ProductsComponent implements OnInit {
     },
     {
       id: 3,
-      name: "Reloj Casual",
-      price: 299900,
-      image: "assets/images/reloj.jpg",
+      name: "Bombillo Inteligente VGA",
+      price: 99900,
+      image: "imagenes/casaInteligente/KitNEXXTHogarInteligenteCámaradeSeguridadFijaWiFi2K2BombillosInteligentesLEDWiFi110VMulticolor.png",
       category: "accesorios",
       brand: "Casio",
       sizes: ["UNICO"],
