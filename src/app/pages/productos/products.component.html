@@ -119,14 +119,20 @@
 
   <main class="products-grid">
     <div class="product-card" *ngFor="let product of filteredProducts">
-      <div class="product-image">
-        <img [src]="product.image" [alt]="product.name">
-        <button class="favorite-btn" (click)="toggleFavorite(product)">♡</button>
+      <div class="product-content" (click)="navigateToProducts(product.id)">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.name">
+        </div>
+        <div class="product-info">
+          <h3>{{product.name}}</h3>
+          <p class="price">{{product.price | currency:'COP':'symbol':'1.0-0'}}</p>
+        </div>
       </div>
-      <div class="product-info">
-        <h3>{{product.name}}</h3>
-        <p class="price">{{product.price | currency:'COP':'symbol':'1.0-0'}}</p>
-        <button class="add-to-cart" (click)="addToCart(product)">Agregar al carrito</button>
+      <div class="product-actions">
+        <button class="favorite-btn" (click)="toggleFavorite(product, $event)">♡</button>
+        <button class="add-to-cart" (click)="navigateToProducts(product.id)">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   </main>

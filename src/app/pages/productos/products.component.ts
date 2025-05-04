@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { Router } from "@angular/router";
+import { PATH } from "../../core/enum/path.enum";
 
 interface Product {
   id: number;
@@ -21,7 +24,7 @@ interface Product {
   templateUrl: "./products.component.html",
   styleUrls: ["./products.component.css"],
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class ProductsComponent implements OnInit {
   allProducts: Product[] = [
@@ -175,12 +178,39 @@ export class ProductsComponent implements OnInit {
   searchTerm: string = "";
   favorites: Set<number> = new Set(); // Para manejar favoritos
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.filteredProducts = [...this.allProducts];
   }
 
+  navigateToProduct(productId: number): void {
+    this.router
+      .navigate(["producto", productId.toString()])
+      .then(() => {
+        console.log("Navegando al producto:", productId);
+      })
+      .catch((err) => {
+        console.error("Error en la navegación:", err);
+      });
+  }
+
+  navigateToProducts(productId?: number): void {
+    if (productId) {
+      this.router
+        .navigate([PATH.PRODUCTOS, productId])
+        .then(() => {
+          console.log("Navegando al producto:", productId);
+        })
+        .catch((err) => {
+          console.error("Error en la navegación:", err);
+        });
+    }
+  }
+
   // Método para manejar favoritos
-  toggleFavorite(product: Product): void {
+  toggleFavorite(product: Product, event: Event): void {
+    event.stopPropagation(); // Evita que el clic se propague
     if (this.favorites.has(product.id)) {
       this.favorites.delete(product.id);
     } else {
@@ -189,9 +219,10 @@ export class ProductsComponent implements OnInit {
   }
 
   // Método para agregar al carrito
-  addToCart(product: Product): void {
+  addToCart(product: Product, event: Event): void {
+    event.stopPropagation(); // Evita que el clic se propague
     console.log("Producto agregado al carrito:", product);
-    // Aquí implementarías la lógica del carrito
+    // lógica del carrito
   }
 
   applyFilters(): void {

@@ -1,0 +1,125 @@
+<div class="product-detail-container" *ngIf="product">
+  <div class="product-main">
+    <div class="product-gallery">
+      <img [src]="product.image" [alt]="product.name" class="main-image">
+    </div>
+
+    <div class="product-info">
+      <h1>{{product.name}}</h1>
+      <div class="price-section">
+        <p class="price">{{product.price | currency:'COP':'symbol':'1.0-0'}}</p>
+        <span class="discount" *ngIf="product.discount">-{{product.discount}}%</span>
+      </div>
+
+      <div class="size-selection">
+        <h3>Talla</h3>
+        <div class="size-options">
+          <button *ngFor="let size of product.sizes"
+                  [class.selected]="selectedSize === size"
+                  (click)="selectedSize = size">
+            {{size}}
+          </button>
+        </div>
+      </div>
+
+      <div class="color-selection" *ngIf="product.colors">
+        <h3>Color</h3>
+        <div class="color-options">
+          <button *ngFor="let color of product.colors"
+                  [class.selected]="selectedColor === color.name"
+                  (click)="selectedColor = color.name"
+                  [style.background-color]="color.value"
+                  [attr.title]="color.name">
+          </button>
+        </div>
+      </div>
+
+      <div class="quantity-selector">
+        <h3>Cantidad</h3>
+        <div class="quantity-controls">
+          <button (click)="updateQuantity(false)">-</button>
+          <span>{{quantity}}</span>
+          <button (click)="updateQuantity(true)">+</button>
+        </div>
+        <p class="stock">{{product.stock}} disponibles</p>
+      </div>
+
+      <div class="action-buttons">
+        <button class="add-to-cart" (click)="addToCart()">
+          Agregar al carrito
+        </button>
+        <button class="buy-now">
+          Comprar ahora
+        </button>
+      </div>
+
+      <div class="shipping-info">
+        <p><i class="fas fa-truck"></i> Envío {{product.shipping}}</p>
+        <p><i class="fas fa-store"></i> Disponible en {{product.location}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-tabs">
+    <div class="tabs-header">
+      <button [class.active]="activeTab === 'description'"
+              (click)="activeTab = 'description'">
+        Descripción
+      </button>
+      <button [class.active]="activeTab === 'specifications'"
+              (click)="activeTab = 'specifications'">
+        Especificaciones
+      </button>
+      <button [class.active]="activeTab === 'reviews'"
+              (click)="activeTab = 'reviews'">
+        Reseñas
+      </button>
+    </div>
+
+    <div class="tab-content">
+      <div *ngIf="activeTab === 'description'" class="description">
+        <p>{{product.description}}</p>
+      </div>
+
+      <div *ngIf="activeTab === 'specifications'" class="specifications">
+        <div class="spec-item" *ngFor="let spec of product.specifications | keyvalue">
+          <span class="spec-label">{{spec.key}}:</span>
+          <span class="spec-value">{{spec.value}}</span>
+        </div>
+      </div>
+
+      <div *ngIf="activeTab === 'reviews'" class="reviews">
+        <div class="review-form">
+          <h3>Escribe una reseña</h3>
+          <div class="rating-input">
+            <span *ngFor="let star of [1,2,3,4,5]"
+                  (click)="userRating = star"
+                  [class.active]="star <= userRating">
+              ★
+            </span>
+          </div>
+          <textarea [(ngModel)]="userReview"
+                    placeholder="Comparte tu opinión...">
+          </textarea>
+          <button (click)="submitReview()">Enviar reseña</button>
+        </div>
+
+        <div class="reviews-list">
+          <div class="review-item" *ngFor="let review of product.reviews">
+            <div class="review-header">
+              <span class="reviewer">{{review.userName}}</span>
+              <span class="rating">
+                <span *ngFor="let star of [1,2,3,4,5]"
+                      [class.active]="star <= review.rating">
+                  ★
+                </span>
+              </span>
+              <span class="date">{{review.date | date}}</span>
+            </div>
+            <p class="comment">{{review.comment}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
