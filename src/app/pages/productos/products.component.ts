@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
+
 interface Product {
   id: number;
   name: string;
@@ -15,6 +16,7 @@ interface Product {
   discount?: number;
   shipping?: string;
 }
+
 
 @Component({
   selector: "app-products",
@@ -108,7 +110,7 @@ export class ProductsComponent implements OnInit {
       name: "Play Station 5 + control + dos juegos ",
       price: 2650000,
       image: "imagenes/consolas/ps5.png",
-      category: "Consola",
+      category: "Consolaa",
       brand: "H&M",
       sizes: ["UNICO"],
       condition: "nuevo",
@@ -121,7 +123,7 @@ export class ProductsComponent implements OnInit {
       name: "Nintendo Switch OLED",
       price: 1299000,
       image: "imagenes/consolas/nintendoswitch.png",
-      category: "consola",
+      category: "Consolaa",
       brand: "Timberland",
       sizes: ["37", "38", "39", "40", "41", "42"],
       condition: "nuevo",
@@ -131,7 +133,7 @@ export class ProductsComponent implements OnInit {
     },
     {
       id: 9,
-      name: "secador y lavadora",
+      name: "secadora lavadora",
       price: 4999000,
       image: "imagenes/electrodomesticos/secadoraLavadora.png",
       category: "electrodomestico",
@@ -185,6 +187,7 @@ export class ProductsComponent implements OnInit {
     shipping: "", // Añadida la propiedad shipping
   };
 
+
   searchTerm: string = "";
   favorites: Set<number> = new Set(); // Para manejar favoritos
 
@@ -200,9 +203,11 @@ export class ProductsComponent implements OnInit {
       this.favorites.add(product.id);
     }
   }
+  cart: Product[] = [];
 
   // Método para agregar al carrito
   addToCart(product: Product): void {
+    this.cart.push(product);
     console.log("Producto agregado al carrito:", product);
     // Aquí implementarías la lógica del carrito
   }
