@@ -4,6 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { Router } from "@angular/router";
 import { PATH } from "../../core/enum/path.enum";
+import { NavbarComponent } from '../../header/navbar/navbar.component';
+import { FooterComponent } from '../../footer/footer/footer.component';
 
 interface Product {
   id: number;
@@ -24,7 +26,7 @@ interface Product {
   templateUrl: "./products.component.html",
   styleUrls: ["./products.component.css"],
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule,NavbarComponent, FooterComponent],
 })
 export class ProductsComponent implements OnInit {
   allProducts: Product[] = [
