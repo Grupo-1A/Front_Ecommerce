@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { NavbarComponent } from '../../header/navbar/navbar.component';
+import { FooterComponent } from '../../footer/footer/footer.component';
 
 interface Review {
   id: number;
@@ -37,7 +39,7 @@ interface Product {
   templateUrl: "./view-products.component.html",
   styleUrls: ["./view-products.component.css"],
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, FooterComponent],
 })
 export class ViewProductsComponent implements OnInit {
   product: Product | null = null;
