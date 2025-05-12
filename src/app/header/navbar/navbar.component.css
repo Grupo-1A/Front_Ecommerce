@@ -1,0 +1,16 @@
+
+.custom-bg {
+  background-color: #A6E2DD;
+  padding: 15px 15px;
+}
+
+.custom-outline {
+  border: 2px solid #A6E2DD;
+  color: black;
+  padding: 10px 20px;
+}
+
+.custom-outline:hover {
+  background-color: #A6E2DD;
+  color: black;
+}

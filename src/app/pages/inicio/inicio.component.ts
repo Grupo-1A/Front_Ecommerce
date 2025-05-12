@@ -3,11 +3,13 @@ import { Router } from "@angular/router";
 import { PATH } from "../../core/enum/path.enum";
 import { CommonModule } from "@angular/common";
 import { NgFor, CurrencyPipe } from "@angular/common";
+import { NavbarComponent } from '../../header/navbar/navbar.component';
+import { FooterComponent } from '../../footer/footer/footer.component';
 
 @Component({
   selector: "app-inicio",
   standalone: true,
-  imports: [NgFor, CurrencyPipe, CommonModule],
+  imports: [NgFor, CurrencyPipe, CommonModule,NavbarComponent,FooterComponent],
   templateUrl: "./inicio.component.html",
   styleUrls: ["./inicio.component.css"],
 })

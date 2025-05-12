@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { CarritoService } from '../pages/productos/carrito.service';
 
-Component({
+@Component({
   selector: 'app-header',
   imports: [],
   templateUrl: './header.component.html',
@@ -9,5 +8,4 @@ Component({
 })
 export class HeaderComponent {
 
-  constructor(public carritoService: CarritoService) {}
 }
