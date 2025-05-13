@@ -3,6 +3,7 @@ import { PATH } from "./core/enum/path.enum";
 import { InicioComponent } from "./pages/inicio/inicio.component";
 import { ProductsComponent } from "./pages/productos/products.component";
 import { ViewProductsComponent } from "./pages/view-products/view-products.component";
+import { LoginComponent } from "./pages/login/login.component";
 
 export const routes: Routes = [
   {
@@ -23,6 +24,11 @@ export const routes: Routes = [
         path: PATH.PRODUCTOS_ID,
         title: "Detalles del Producto",
         component: ViewProductsComponent,
+      },
+      {
+        path: PATH.LOGIN,
+        title: "Iniciar Sesión",
+        component: LoginComponent
       },
     ],
   },

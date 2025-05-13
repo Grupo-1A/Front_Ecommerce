@@ -3,4 +3,7 @@ export enum PATH {
   INICIO = "",
   PRODUCTOS = "productos",
   PRODUCTOS_ID = "productos/:id",
+  LOGIN = "login",
+  REGISTRO = "registro",
+  CARRITO = "carrito",
 }
