@@ -1,15 +1,16 @@
 <app-navbar2></app-navbar2>
 
+<!-- register.component.html -->
 <div class="container d-flex align-items-center justify-content-center vh-100">
   <div class="row w-100">
     <!-- Mensaje a la izquierda -->
     <div class="col-md-6 d-flex align-items-center justify-content-center">
       <h2 class="fw-bold text-start">
-        Regístrate para <br> disfrutar de los mejores productos <br> en nuestro E-commerce
+        Regístrate para disfrutar<br>de todos los beneficios<br>de nuestro E-commerce
       </h2>
     </div>
 
-    <!-- Formulario a la derecha -->
+    <!-- Formulario de registro -->
     <div class="col-md-6">
       <div class="card shadow p-4 rounded overflow-auto" style="max-height: 90vh;">
         <form>
@@ -17,45 +18,45 @@
             <label for="nombres" class="form-label">Nombres</label>
             <input type="text" class="form-control" id="nombres" placeholder="Tus nombres">
           </div>
-
           <div class="mb-3">
             <label for="apellidos" class="form-label">Apellidos</label>
             <input type="text" class="form-control" id="apellidos" placeholder="Tus apellidos">
           </div>
-
           <div class="mb-3">
             <label for="documento" class="form-label">Documento</label>
-            <input type="text" class="form-control" id="documento" placeholder="Número de documento">
+            <input type="text" class="form-control" id="documento" placeholder="Cédula o documento">
           </div>
-
           <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Teléfono">
+            <input type="tel" class="form-control" id="telefono" placeholder="Número de contacto">
           </div>
-
           <div class="mb-3">
             <label for="direccion" class="form-label">Dirección</label>
             <input type="text" class="form-control" id="direccion" placeholder="Dirección de residencia">
           </div>
-
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" placeholder="ejemplo@email.com">
+          </div>
           <div class="mb-3">
             <label for="ciudad" class="form-label">Ciudad</label>
-            <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
+            <input type="text" class="form-control" id="ciudad" placeholder="Ciudad de residencia">
           </div>
-
           <div class="mb-3">
             <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
             <input type="date" class="form-control" id="fechaNacimiento">
           </div>
-
           <div class="mb-3">
-            <label for="email" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com">
+            <label for="usuario" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="usuario" placeholder="Nombre de usuario deseado">
           </div>
-
           <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="••••••">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" placeholder="••••••">
+          </div>
+          <div class="mb-3">
+            <label for="confirmarContrasena" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="confirmarContrasena" placeholder="••••••">
           </div>
 
           <button type="submit" class="btn btn-success w-100">Registrarse</button>
