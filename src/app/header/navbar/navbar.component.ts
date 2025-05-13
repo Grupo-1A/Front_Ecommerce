@@ -20,4 +20,8 @@ export class NavbarComponent {
     this.router.navigate([PATH.HOME, PATH.PRODUCTOS]);
 
 }
+  navigateToRegister(): void {
+  this.router.navigate([PATH.HOME, PATH.REGISTRO]);
+
+}
 }

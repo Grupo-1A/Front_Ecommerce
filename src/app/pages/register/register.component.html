@@ -1,1 +1,68 @@
-<p>register works!</p>
+<app-navbar2></app-navbar2>
+
+<div class="container d-flex align-items-center justify-content-center vh-100">
+  <div class="row w-100">
+    <!-- Mensaje a la izquierda -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <h2 class="fw-bold text-start">
+        Regístrate para <br> disfrutar de los mejores productos <br> en nuestro E-commerce
+      </h2>
+    </div>
+
+    <!-- Formulario a la derecha -->
+    <div class="col-md-6">
+      <div class="card shadow p-4 rounded overflow-auto" style="max-height: 90vh;">
+        <form>
+          <div class="mb-3">
+            <label for="nombres" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="nombres" placeholder="Tus nombres">
+          </div>
+
+          <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" placeholder="Tus apellidos">
+          </div>
+
+          <div class="mb-3">
+            <label for="documento" class="form-label">Documento</label>
+            <input type="text" class="form-control" id="documento" placeholder="Número de documento">
+          </div>
+
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" placeholder="Teléfono">
+          </div>
+
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Dirección de residencia">
+          </div>
+
+          <div class="mb-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" placeholder="Ciudad">
+          </div>
+
+          <div class="mb-3">
+            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fechaNacimiento">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com">
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="••••••">
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer2></app-footer2>
