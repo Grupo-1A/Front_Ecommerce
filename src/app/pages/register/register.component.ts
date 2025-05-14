@@ -58,12 +58,12 @@ export class RegisterComponent implements OnInit {
       this.http.post(this.apiUrl, this.registerForm.value).subscribe(
         (response: any) => {
           console.log('Registro exitoso', response);
-       
-          this.router.navigate(['/login']); 
+
+          this.router.navigate(['/login']);
         },
         (error) => {
           console.error('Error en el registro', error);
-          
+
         }
       );
     } else {

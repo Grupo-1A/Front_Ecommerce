@@ -47,7 +47,7 @@
 }
 
 .carousel-caption button {
-  background-color: #ff5733;
+  background-color: #a6e2dd;
   border: none;
   padding: 10px 20px;
   color: white;
@@ -57,7 +57,7 @@
 }
 
 .hero-text button:hover {
-  background-color: #e85b50;
+  background-color: #A6E2DD;
   transform: scale(1.05);
 }
 
@@ -118,7 +118,7 @@
 }
 
 .product-card p {
-  color: #ff6f61;
+  color: #A6E2DD;
   font-weight: bold;
   margin-top: 0.5rem;
 }
@@ -126,7 +126,7 @@
 .product-card button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #ff6f61;
+  background-color: #A6E2DD;
   border: none;
   color: white;
   cursor: pointer;
@@ -135,7 +135,7 @@
 }
 
 .product-card button:hover {
-  background-color: #e85b50;
+  background-color: #A6E2DD;
   transform: scale(1.05);
 }
 
