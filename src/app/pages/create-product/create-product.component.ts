@@ -1,10 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ProductService } from "../../services/product.service";
-import { Category } from "../../interfaces/product.interface";
+import { OnInit } from "@angular/core";
+
+interface Category {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: "app-create-product",
@@ -13,11 +18,13 @@ import { Category } from "../../interfaces/product.interface";
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
 })
-export class CreateProductComponent implements OnInit {
+export class AdminProductComponent implements OnInit {
   productForm: FormGroup;
-  categories: Category[] = [];
   isLoading = false;
   error: string | null = null;
+  products: any[] = [];
+  isEditing = false;
+  editingId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -25,49 +32,103 @@ export class CreateProductComponent implements OnInit {
     private productService: ProductService
   ) {
     this.productForm = this.fb.group({
-      name: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      price: [0, [Validators.required, Validators.min(0)]],
+      nombre: ["", Validators.required],
+      descripcion: ["", Validators.required],
+      precio: [0, [Validators.required, Validators.min(0)]],
       stock: [0, [Validators.required, Validators.min(0)]],
-      category: ["", []],
-      brand: ["", [Validators.required]],
-      imageUrl: ["", [Validators.required]],
+      categoria: ["", Validators.required],
+      marca: ["", Validators.required],
+      imageUrl: ["", Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.loadCategories();
+    this.getAllProducts();
   }
 
-  loadCategories(): void {
-    this.productService.getCategories().subscribe({
-      next: (categories) => {
-        this.categories = categories;
+  getAllProducts(): void {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
       },
-      error: (error) => {
-        console.error("Error loading categories:", error);
-        this.error = "Error al cargar las categorías";
+      error: (err) => {
+        console.error(err);
       },
     });
   }
 
   onSubmit(): void {
-    if (this.productForm.valid) {
-      this.isLoading = true;
-      this.productService.createProduct(this.productForm.value).subscribe({
-        next: () => {
-          this.router.navigate(["/products"]);
-        },
-        error: (error) => {
-          console.error("Error creating product:", error);
-          this.error = "Error al crear el producto";
-          this.isLoading = false;
-        },
+    const formValue = this.productForm.value;
+    const categoryName =
+      this.categories.find((cat) => cat.id === formValue.categoria)?.name || "";
+
+    const productData = {
+      ...formValue,
+      precio: Number(formValue.precio),
+      stock: Number(formValue.stock),
+      categoria: categoryName,
+    };
+
+    if (this.isEditing && this.editingId) {
+      this.productService
+        .updateProduct(this.editingId, productData)
+        .subscribe(() => {
+          this.getAllProducts();
+          this.resetForm();
+        });
+    } else {
+      this.productService.createProduct(productData).subscribe(() => {
+        this.getAllProducts();
+        this.productForm.reset();
+      });
+    }
+  }
+
+  editProduct(product: any): void {
+    this.isEditing = true;
+    this.editingId = product._id;
+
+    const category = this.categories.find(
+      (cat) => cat.name === product.categoria
+    );
+
+    this.productForm.patchValue({
+      nombre: product.nombre,
+      descripcion: product.descripcion,
+      precio: product.precio,
+      stock: product.stock,
+      categoria: category?.id || "",
+      marca: product.marca,
+      imageUrl: product.imageUrl,
+    });
+  }
+
+  categories: Category[] = [
+    { id: "1", name: "Electrónicos" },
+    { id: "2", name: "Ropa" },
+    { id: "3", name: "Hogar" },
+    { id: "4", name: "Deportes" },
+    { id: "5", name: "Juguetes" },
+    { id: "6", name: "Libros" },
+    { id: "7", name: "Belleza" },
+    { id: "8", name: "Alimentos" },
+  ];
+
+  deleteProduct(id: string): void {
+    if (confirm("¿Estás seguro de eliminar este producto?")) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        this.getAllProducts();
       });
     }
   }
 
   onCancel(): void {
-    this.router.navigate(["/products"]);
+    this.resetForm();
+  }
+
+  resetForm(): void {
+    this.productForm.reset();
+    this.isEditing = false;
+    this.editingId = null;
   }
 }

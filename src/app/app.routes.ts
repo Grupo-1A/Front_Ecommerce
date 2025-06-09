@@ -5,7 +5,7 @@ import { ProductsComponent } from "./pages/productos/products.component";
 import { ViewProductsComponent } from "./pages/view-products/view-products.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
-import { CreateProductComponent } from "./pages/create-product/create-product.component";
+import { AdminProductComponent } from "./pages/create-product/create-product.component";
 
 export const routes: Routes = [
   {
@@ -40,7 +40,7 @@ export const routes: Routes = [
       {
         path: PATH.CREARPRODUCTOS,
         title: "Crear Producto",
-        component: CreateProductComponent,
+        component: AdminProductComponent,
       },
     ],
   },

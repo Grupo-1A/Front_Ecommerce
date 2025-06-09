@@ -1,14 +1,11 @@
 export interface Product {
-  id?: string;
-  name: string;
-  description: string;
-  price: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
   stock: number;
-  category: string;
-  brand: string;
+  categoria: string;
+  marca: string;
   imageUrl: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 export interface Category {

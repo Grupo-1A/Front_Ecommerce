@@ -1,65 +1,90 @@
-<div class="create-product-container">
+<div class="admin-product-container">
   <div class="create-product-header">
-    <h1>Crear Nuevo Producto</h1>
+    <h1>Gestión de Productos</h1>
   </div>
 
+  <!-- FORMULARIO -->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
     <div class="form-section">
-      <h3>Información Básica</h3>
+      <h3>{{ isEditing ? 'Editar Producto' : 'Crear Nuevo Producto' }}</h3>
 
       <div class="form-group">
         <label for="name">Nombre del Producto</label>
-        <input type="text" id="name" formControlName="name" placeholder="Ingrese el nombre del producto">
-        <div class="error-message" *ngIf="productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched">
-          El nombre es requerido
-        </div>
+        <input type="text" id="name" formControlName="nombre" placeholder="Ingrese el nombre del producto">
       </div>
 
       <div class="form-group">
         <label for="description">Descripción</label>
-        <textarea id="description" formControlName="description" rows="4" placeholder="Describa el producto"></textarea>
+        <textarea id="description" formControlName="descripcion" rows="4"></textarea>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="price">Precio</label>
-          <input type="number" id="price" formControlName="price" placeholder="0.00">
+          <input type="number" id="price" formControlName="precio">
         </div>
 
         <div class="form-group">
           <label for="stock">Stock</label>
-          <input type="number" id="stock" formControlName="stock" placeholder="0">
+          <input type="number" id="stock" formControlName="stock">
         </div>
       </div>
-    </div>
-
-    <div class="form-section">
-      <h3>Detalles del Producto</h3>
 
       <div class="form-group">
         <label for="category">Categoría</label>
-        <select id="category" formControlName="category">
+        <select id="category" formControlName="categoria">
           <option value="">Seleccione una categoría</option>
-          <option *ngFor="let category of categories" [value]="category.id">
-            {{category.name}}
-          </option>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label for="brand">Marca</label>
-        <input type="text" id="brand" formControlName="brand" placeholder="Ingrese la marca">
+        <input type="text" id="brand" formControlName="marca">
       </div>
 
       <div class="form-group">
         <label for="imageUrl">URL de la Imagen</label>
-        <input type="text" id="imageUrl" formControlName="imageUrl" placeholder="https://...">
+        <input type="text" id="imageUrl" formControlName="imageUrl">
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="cancel-button" (click)="onCancel()">Cancelar</button>
+        <button type="submit" class="submit-button" [disabled]="productForm.invalid">
+          {{ isEditing ? 'Actualizar' : 'Crear Producto' }}
+        </button>
       </div>
     </div>
-
-    <div class="form-actions">
-      <button type="button" class="cancel-button" (click)="onCancel()">Cancelar</button>
-      <button type="submit" class="submit-button" [disabled]="productForm.invalid">Crear Producto</button>
-    </div>
   </form>
+
+  <!-- HISTORIAL DE PRODUCTOS -->
+  <div class="product-list-section">
+    <h3>Historial de Productos</h3>
+    <div *ngIf="products.length === 0">No hay productos registrados.</div>
+    <table *ngIf="products.length > 0" class="product-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Marca</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of products">
+          <td>{{ prod.nombre }}</td>
+          <td>${{ prod.precio }}</td>
+          <td>{{ prod.stock }}</td>
+          <td>{{ prod.marca }}</td>
+          <td>{{ prod.categoria }}</td>
+          <td>
+            <button (click)="editProduct(prod)">Editar</button>
+            <button (click)="deleteProduct(prod._id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
