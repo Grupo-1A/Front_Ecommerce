@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Product, Category } from "../interfaces/product.interface";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +14,9 @@ export class ProductService {
 
   // Obtener todos los productos
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/productos`);
+    return this.http
+      .get<{ ok: boolean; productos: Product[] }>(`${this.apiUrl}/productos`)
+      .pipe(map((response) => response.productos));
   }
 
   // Obtener un producto por ID

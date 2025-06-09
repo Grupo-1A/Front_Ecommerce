@@ -3,14 +3,14 @@
     <h1>Gestión de Productos</h1>
   </div>
 
-  <!-- FORMULARIO -->
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
-    <div class="form-section">
+  <div class="content-wrapper">
+    <!-- FORMULARIO A LA IZQUIERDA -->
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
       <h3>{{ isEditing ? 'Editar Producto' : 'Crear Nuevo Producto' }}</h3>
 
       <div class="form-group">
         <label for="name">Nombre del Producto</label>
-        <input type="text" id="name" formControlName="nombre" placeholder="Ingrese el nombre del producto">
+        <input type="text" id="name" formControlName="nombre" placeholder="Ingrese el nombre del producto" />
       </div>
 
       <div class="form-group">
@@ -21,12 +21,12 @@
       <div class="form-row">
         <div class="form-group">
           <label for="price">Precio</label>
-          <input type="number" id="price" formControlName="precio">
+          <input type="number" id="price" formControlName="precio" />
         </div>
 
         <div class="form-group">
           <label for="stock">Stock</label>
-          <input type="number" id="stock" formControlName="stock">
+          <input type="number" id="stock" formControlName="stock" />
         </div>
       </div>
 
@@ -40,12 +40,12 @@
 
       <div class="form-group">
         <label for="brand">Marca</label>
-        <input type="text" id="brand" formControlName="marca">
+        <input type="text" id="brand" formControlName="marca" />
       </div>
 
       <div class="form-group">
         <label for="imageUrl">URL de la Imagen</label>
-        <input type="text" id="imageUrl" formControlName="imageUrl">
+        <input type="text" id="imageUrl" formControlName="imageUrl" />
       </div>
 
       <div class="form-actions">
@@ -54,37 +54,37 @@
           {{ isEditing ? 'Actualizar' : 'Crear Producto' }}
         </button>
       </div>
-    </div>
-  </form>
+    </form>
 
-  <!-- HISTORIAL DE PRODUCTOS -->
-  <div class="product-list-section">
-    <h3>Historial de Productos</h3>
-    <div *ngIf="products.length === 0">No hay productos registrados.</div>
-    <table *ngIf="products.length > 0" class="product-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Marca</th>
-          <th>Categoría</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let prod of products">
-          <td>{{ prod.nombre }}</td>
-          <td>${{ prod.precio }}</td>
-          <td>{{ prod.stock }}</td>
-          <td>{{ prod.marca }}</td>
-          <td>{{ prod.categoria }}</td>
-          <td>
-            <button (click)="editProduct(prod)">Editar</button>
-            <button (click)="deleteProduct(prod._id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- TABLA A LA DERECHA -->
+    <div class="product-list-section">
+      <h3>Historial de Productos</h3>
+      <div *ngIf="products.length === 0">No hay productos registrados.</div>
+      <table *ngIf="products.length > 0" class="product-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Marca</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products">
+            <td>{{ prod.nombre }}</td>
+            <td>${{ prod.precio }}</td>
+            <td>{{ prod.stock }}</td>
+            <td>{{ prod.marca }}</td>
+            <td>{{ prod.categoria }}</td>
+            <td class="actions-cell">
+              <button (click)="editProduct(prod)" class="edit-button">Editar</button>
+              <button (click)="deleteProduct(prod._id)" class="delete-button">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

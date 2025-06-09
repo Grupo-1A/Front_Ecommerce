@@ -49,6 +49,7 @@ export class AdminProductComponent implements OnInit {
   getAllProducts(): void {
     this.productService.getProducts().subscribe({
       next: (data) => {
+        console.log("Productos recibidos:", data);
         this.products = data;
       },
       error: (err) => {
