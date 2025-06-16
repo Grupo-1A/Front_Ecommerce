@@ -24,14 +24,14 @@ export class ProductService {
     return this.http.get<Product>(`${this.apiUrl}/productos/${id}`);
   }
 
-  // Crear un nuevo producto (se usa un any para que no sea necesario el _id)
-  createProduct(product: any): Observable<Product> {
-    return this.http.post<Product>(`${this.apiUrl}/productos`, product);
+  // Crear un nuevo producto con imagen (FormData)
+  createProduct(formData: FormData): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}/productos`, formData);
   }
 
-  // Actualizar un producto
-  updateProduct(id: string, product: any): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/productos/${id}`, product);
+  // Actualizar producto con FormData (por ejemplo cuando se cambia la imagen)
+  updateProductFormData(id: string, formData: FormData): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/productos/${id}`, formData);
   }
 
   // Eliminar un producto

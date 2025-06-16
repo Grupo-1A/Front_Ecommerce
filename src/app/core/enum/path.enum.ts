@@ -7,4 +7,5 @@ export enum PATH {
   LOGIN = "login",
   REGISTRO = "registro",
   CARRITO = "carrito",
+  PRUEBA = "prueba",
 }
