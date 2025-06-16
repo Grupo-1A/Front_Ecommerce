@@ -1,23 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ProductService } from "../../services/product.service";
+import { Product } from "../../interfaces/product.interface";
 
-import { ViewProductComponent } from './view-product.component';
+@Component({
+  selector: "app-product-detail",
+  templateUrl: "../view-product/view-product.component.html",
+  styleUrls: ["../view-product/view-product.component.css"],
+})
+export class ProductDetailComponent implements OnInit {
+  product!: Product;
 
-describe('ViewProductComponent', () => {
-  let component: ViewProductComponent;
-  let fixture: ComponentFixture<ViewProductComponent>;
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewProductComponent]
-    })
-    .compileComponents();
+  ngOnInit(): void {
+    const productId = this.route.snapshot.paramMap.get("id");
+    if (productId) {
+      this.productService.getProductById(productId).subscribe({
+        next: (product) => (this.product = product),
+        error: (err) => console.error("Error al cargar producto", err),
+      });
+    }
+  }
 
-    fixture = TestBed.createComponent(ViewProductComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  goBack() {
+    window.history.back();
+  }
+}

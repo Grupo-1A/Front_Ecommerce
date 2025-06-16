@@ -1,22 +1,38 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../interfaces/product.interface";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-product-list",
+  selector: "app-product-detail",
   templateUrl: "../view-product/view-product.component.html",
+  styleUrls: ["../view-product/view-product.component.css"],
+  imports: [CommonModule],
 })
-export class ProductListComponent implements OnInit {
-  productos: Product[] = [];
+export class ProductDetailComponent implements OnInit {
+  product!: Product;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.productos = data;
-      },
-      error: (err) => console.error("Error cargando productos:", err),
-    });
+    const productId = this.route.snapshot.paramMap.get("id");
+    if (productId) {
+      this.productService.getProductById(productId).subscribe({
+        next: (data) => {
+          console.log("Producto recibido: ", data);
+          this.product = data.producto;
+        },
+        error: (err) => {
+          console.error("Error al obtener el producto:", err);
+        },
+      });
+    }
+  }
+  goBack() {
+    window.history.back();
   }
 }

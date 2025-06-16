@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { PATH } from "./core/enum/path.enum";
 import { InicioComponent } from "./pages/inicio/inicio.component";
 import { ProductsComponent } from "./pages/productos/products.component";
-import { ProductListComponent } from "./pages/view-product/view-product.component";
+import { ProductDetailComponent } from "./pages/view-product/view-product.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { AdminProductComponent } from "./pages/create-product/create-product.component";
@@ -22,11 +22,11 @@ export const routes: Routes = [
         title: "Productos",
         component: ProductsComponent,
       },
-      // {
-      //   path: PATH.PRODUCTOS_ID,
-      //   title: "Detalles del Producto",
-      //   component: ViewProductsComponent,
-      // },
+      {
+        path: PATH.PRODUCTOS_ID,
+        title: "Detalles del Producto",
+        component: ProductDetailComponent,
+      },
       {
         path: PATH.LOGIN,
         title: "Iniciar Sesión",
@@ -41,11 +41,6 @@ export const routes: Routes = [
         path: PATH.CREARPRODUCTOS,
         title: "Crear Producto",
         component: AdminProductComponent,
-      },
-      {
-        path: PATH.PRUEBA,
-        title: "Prueba",
-        component: ProductListComponent,
       },
     ],
   },

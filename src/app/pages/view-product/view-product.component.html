@@ -1,9 +1,21 @@
-<div *ngFor="let producto of productos"
-  style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 10px; padding: 15px; max-width: 400px; box-shadow: 0 2px 8px rgba(0,0,0,0.1)">
-  <h3 style="color: #004d40;">{{ producto.nombre }}</h3>
-  <img *ngIf="producto.imagen" [src]="producto.imagen" alt="Imagen del producto"
-    style="width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 10px;" />
-  <p style="font-size: 14px; color: #666;">{{ producto.descripcion }}</p>
-  <p style="font-weight: bold; color: #289b15;">Precio: ${{ producto.precio }}</p>
-  <p style="font-size: 13px; color: #757575;">Stock: {{ producto.stock }}</p>
+<div class="product-detail-container" *ngIf="product">
+  <img [src]="product.imageUrl" class="product-detail-image" alt="Imagen del producto" />
+
+  <div class="product-detail-info">
+    <div>
+      <h2>{{ product.nombre }}</h2>
+      <p class="detail-description">{{ product.descripcion }}</p>
+
+      <p><strong>Categoría:</strong> {{ product.categoria }}</p>
+      <p><strong>Marca:</strong> {{ product.marca }}</p>
+      <p><strong>Stock disponible:</strong> {{ product.stock }}</p>
+
+      <div class="product-detail-price">${{ product.precio }}</div>
+    </div>
+
+    <div class="product-detail-actions">
+      <button class="btn-buy">Comprar ahora</button>
+      <button class="btn-back" (click)="goBack()">Volver</button>
+    </div>
+  </div>
 </div>

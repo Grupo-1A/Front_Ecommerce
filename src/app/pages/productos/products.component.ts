@@ -6,7 +6,6 @@ import { NavbarComponent } from "../../header/navbar/navbar.component";
 import { FooterComponent } from "../../footer/footer/footer.component";
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../interfaces/product.interface";
-import { PATH } from "../../core/enum/path.enum";
 
 @Component({
   selector: "app-products",
@@ -51,10 +50,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  navigateToProduct(productId: string): void {
-    this.router
-      .navigate(["producto", productId])
-      .catch((err) => console.error("Error en la navegación:", err));
+  navigateToProduct(productId: string) {
+    this.router.navigate(["/productos", productId]);
   }
 
   toggleFavorite(product: Product, event: Event): void {

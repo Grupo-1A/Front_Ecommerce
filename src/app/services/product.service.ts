@@ -20,8 +20,10 @@ export class ProductService {
   }
 
   // Obtener un producto por ID
-  getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/productos/${id}`);
+  getProductById(id: string): Observable<{ ok: boolean; producto: Product }> {
+    return this.http.get<{ ok: boolean; producto: Product }>(
+      `${this.apiUrl}/productos/${id}`
+    );
   }
 
   // Crear un nuevo producto con imagen (FormData)

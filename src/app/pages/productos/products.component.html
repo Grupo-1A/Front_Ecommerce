@@ -125,6 +125,7 @@
   <main class="products-grid">
     <div class="product-card" *ngFor="let product of filteredProducts">
       <div class="product-content" (click)="navigateToProduct(product._id)">
+
         <div class="product-image">
           <img [src]="product.imageUrl" [alt]="product.nombre">
         </div>
@@ -135,7 +136,7 @@
       </div>
       <div class="product-actions">
         <button class="favorite-btn" (click)="toggleFavorite(product, $event)">♡</button>
-        <button class="add-to-cart" (click)="navigateToProduct(product._id)">
+        <button class="add-to-cart" (click)="navigateToProduct(product._id); $event.stopPropagation()">
           Agregar al carrito
         </button>
       </div>
